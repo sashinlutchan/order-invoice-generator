@@ -1,0 +1,28 @@
+{
+  "name": "test-scripts",
+  "version": "1.0.0",
+  "description": "Test scripts for Order PDF Generator Service",
+  "main": "insert-test-orders.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node insert-test-orders.ts",
+    "dev": "ts-node --watch insert-test-orders.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.0.0",
+    "@aws-sdk/lib-dynamodb": "^3.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "keywords": [
+    "aws",
+    "dynamodb",
+    "testing"
+  ],
+  "author": "",
+  "license": "MIT"
+}

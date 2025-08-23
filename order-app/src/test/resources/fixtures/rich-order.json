@@ -1,0 +1,36 @@
+{
+    "orderId": "ORDER-2024-789",
+    "currency": "USD",
+    "createdAt": "2024-01-15T14:45:30Z",
+    "customer": {
+        "name": "Jane Smith",
+        "email": "jane.smith@company.com",
+        "phone": "+1-555-987-6543",
+        "address": "456 Corporate Drive, Suite 200, Business City, NY 10001"
+    },
+    "lines": [
+        {
+            "sku": "SKU-PREMIUM-001",
+            "quantity": 1,
+            "priceMinor": 9999
+        },
+        {
+            "sku": "SKU-DELUXE-002",
+            "quantity": 2,
+            "priceMinor": 4999
+        },
+        {
+            "sku": "SKU-STANDARD-003",
+            "quantity": 3,
+            "priceMinor": 1999
+        }
+    ],
+    "status": "PROCESSING",
+    "notes": "Rush order - please expedite shipping and handle with care",
+    "source": "mobile_app",
+    "priority": "high",
+    "region": "us-west",
+    "totalAmount": 259.95,
+    "orderDate": "2024-01-15T14:45:30Z",
+    "processingTime": 2850
+}

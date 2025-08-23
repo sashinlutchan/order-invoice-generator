@@ -1,0 +1,34 @@
+{
+    "pk": "ORDER#123",
+    "sk": "STATE#v1",
+    "orderId": "123",
+    "customerName": "Test Customer",
+    "customerEmail": "test@example.com",
+    "customerPhone": "+1-555-123-4567",
+    "shippingAddress": "123 Test Street, Test City, TC 12345",
+    "totalAmount": 125.50,
+    "status": "CONFIRMED",
+    "pdfStatus": "PENDING",
+    "orderDate": "2024-01-15T10:30:00Z",
+    "notes": "Test order notes",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z",
+    "items": [
+        {
+            "itemId": "ITEM-001",
+            "productName": "Premium Electronics Headphones",
+            "quantity": 2,
+            "price": 25.00
+        },
+        {
+            "itemId": "ITEM-002",
+            "productName": "Deluxe Home Coffee Mug",
+            "quantity": 1,
+            "price": 75.50
+        }
+    ],
+    "processingTime": 1500,
+    "source": "website",
+    "priority": "normal",
+    "region": "us-east"
+}

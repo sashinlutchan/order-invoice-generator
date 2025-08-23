@@ -1,0 +1,31 @@
+{
+    "orderId": "TEST-ORDER-001",
+    "currency": "USD",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "customer": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "+1-555-123-4567",
+        "address": "123 Main Street, Springfield, IL 62701"
+    },
+    "lines": [
+        {
+            "sku": "ITEM-001",
+            "quantity": 2,
+            "priceMinor": 2500
+        },
+        {
+            "sku": "ITEM-002",
+            "quantity": 1,
+            "priceMinor": 4999
+        }
+    ],
+    "status": "CONFIRMED",
+    "notes": "Test order for PDF generation",
+    "source": "website",
+    "priority": "normal",
+    "region": "us-east",
+    "totalAmount": 99.98,
+    "orderDate": "2024-01-15T10:30:00Z",
+    "processingTime": 1500
+}

@@ -1,0 +1,8 @@
+name: order-generator-service
+description: Order PDF Generator Service Infrastructure
+runtime: java
+config:
+  pulumi:tags:
+    value:
+      project: order-generator-service
+      environment: development
