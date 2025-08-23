@@ -1,0 +1,74 @@
+name: Release Staging Backend
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [develop, main]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-backend.yml
+    with: {}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'oracle'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build Application JAR
+        run: mvn clean package -DskipTests
+        working-directory: order-app/
+
+      - name: Install Pulumi CLI
+        uses: pulumi/actions@v4
+
+      - name: Login to Pulumi S3 Backend
+        run: pulumi login s3://${{ secrets.PULUMI_STATE_BUCKET }}
+        working-directory: pulumi/
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ""
+
+      - name: Select Pulumi Stack
+        run: pulumi stack select staging
+        working-directory: pulumi/
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ""
+
+      - name: Refresh Pulumi Stack
+        run: pulumi refresh --yes
+        working-directory: pulumi/
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PULUMI_CONFIG_PASSPHRASE: ""
+
+      - name: Deploy with Pulumi
+        run: pulumi up --yes
+        working-directory: pulumi/
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PULUMI_CONFIG_PASSPHRASE: ""
+           
+      - name: Deployment Complete
+        run: echo "Java Order PDF Generator Service deployment to staging completed successfully!"
