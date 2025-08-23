@@ -1,6 +1,6 @@
 # Order PDF Generator Service
 
-This is a **100% serverless** demonstration of PDF generation based on DynamoDB events through a Step Functions workflow. The service automatically generates professional PDF invoices when orders are inserted into DynamoDB.
+This is a **serverless** demonstration of PDF generation based on DynamoDB events through a Step Functions workflow. The service automatically generates professional PDF invoices when orders are inserted into DynamoDB.
 
 ## Architecture Overview
 
@@ -15,7 +15,7 @@ This serverless solution uses these AWS services:
 ### Technology Stack
 - **Main Application**: Java 24 with Maven (Lambda functions, PDF generation)
 - **Test Scripts**: TypeScript with Yarn (data generation and testing)
-- **Infrastructure**: Pulumi with Java
+- **Infrastructure**: Pulumi 
 - **PDF Generation**: HTML/CSS templates with OpenHTMLtoPDF
 
 ### Workflow Sequence
@@ -154,8 +154,8 @@ The `insert-test-orders.ts` script generates realistic test data with:
 - **Random Order IDs**: Multiple patterns (ORD-timestamp-suffix, ORDER-datetime-suffix, WEB/APP/STORE-timestamp-suffix)
 - **Customer Data**: 30 first names × 30 last names with 20 email domain variations
 - **Product Names**: Combination of 10 categories × 10 adjectives × 26 product types
-- **Addresses**: Realistic US addresses with 15 street names × 15 cities × 10 states
-- **Phone Numbers**: US format with area codes (555, 444, 333, etc.)
+- **Addresses**: Realistic  addresses with 15 street names × 15 cities × 10 states
+- **Phone Numbers**:  formats with area codes (555, 444, 333, etc.)
 - **Order Notes**: 10 realistic delivery instruction variations (70% probability)
 - **Timestamps**: Random dates within last 30 days with precise timing
 
@@ -259,8 +259,8 @@ Order-PDF-Generator-Service/
 | `AWS_REGION` | AWS region for services | `af-south-1` |
 | `DYNAMODB_TABLE_NAME` | DynamoDB table name | `orders-table` |
 | `ORDER_COUNT` | Number of orders to generate | `100` |
-| `AWS_ACCESS_KEY_ID` | AWS access key (optional) | - |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key (optional) | - |
+| `AWS_ACCESS_KEY_ID` | AWS access key (optional as long as aws cli is configure with keys ) | - |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret key (optional as long as aws cli is configure with keys ) | - |
 
 ## Monitoring the Pipeline
 
