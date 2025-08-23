@@ -123,7 +123,7 @@ mvn test
 
 ### 🚦 End-to-End Testing with Test Scripts
 
-> 📖 **For detailed testing instructions and advanced configuration options, see the [TestScripts README](testscripts/README.md)**
+> 📖 **For detailed testing instructions and advanced configuration options, see the [TestScripts README](testscript/README.md)**
 
 ```bash
 # Navigate to test scripts
@@ -238,7 +238,7 @@ Order-PDF-Generator-Service/
 │   │   └── common/dto/...
 │   └── src/main/resources/templates/
 │       └── invoice-template.html       # PDF template
-├── testscripts/                       # Test data generation
+├── testscript/                       # Test data generation
 │   ├── package.json
 │   ├── insert-test-orders.ts          # Random order generator
 │   └── README.md                      # Detailed testing guide (see link above)
