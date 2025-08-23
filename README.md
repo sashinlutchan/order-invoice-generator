@@ -1,8 +1,8 @@
-# Order PDF Generator Service
+# 📄 Order PDF Generator Service
 
 This is a **serverless** demonstration of PDF generation based on DynamoDB events through a Step Functions workflow. The service automatically generates professional PDF invoices when orders are inserted into DynamoDB.
 
-## Architecture Overview
+## 🏗️ Architecture Overview
 
 This serverless solution uses these AWS services:
 - **AWS Lambda** - Serverless compute for PDF generation (Java 24)
@@ -12,13 +12,13 @@ This serverless solution uses these AWS services:
 - **AWS EventBridge Pipes** - Event routing from streams to SQS with throttling
 - **AWS S3** - Object storage for generated PDFs
 
-### Technology Stack
+### 💻 Technology Stack
 - **Main Application**: Java 24 with Maven (Lambda functions, PDF generation)
 - **Test Scripts**: TypeScript with Yarn (data generation and testing)
 - **Infrastructure**: Pulumi 
 - **PDF Generation**: HTML/CSS templates with OpenHTMLtoPDF
 
-### Workflow Sequence
+### 🔄 Workflow Sequence
 
 ```mermaid
 sequenceDiagram
@@ -66,9 +66,9 @@ sequenceDiagram
 
 The Step Functions workflow processes multiple orders efficiently through its loop mechanism with built-in throttling controls.
 
-## Deployment Commands
+## 🚀 Deployment Commands
 
-### Initial Setup
+### ⚙️ Initial Setup
 
 ```bash
 cd pulumi
@@ -79,28 +79,28 @@ pulumi config set aws:region af-south-1
 pulumi up --yes   # Deploy infrastructure and Lambda functions
 ```
 
-### Subsequent Deployments
+### 🔄 Subsequent Deployments
 
 ```bash
 cd pulumi
 pulumi up --yes   # Deploy updates (automatically rebuilds JAR)
 ```
 
-### Destroy Infrastructure
+### 💥 Destroy Infrastructure
 
 ```bash
 cd pulumi
 pulumi destroy --yes   # Remove all AWS resources
 ```
 
-## Development Setup
+## 🛠️ Development Setup
 
-### Prerequisites
+### 📋 Prerequisites
 - **Node.js** and **Yarn** package manager
 - **AWS CLI** configured with appropriate permissions
 - **Java 24** and **Maven** for Lambda development
 
-### Build & Deploy
+### 🔨 Build & Deploy
 ```bash
 # Build application
 cd order-app
@@ -111,9 +111,9 @@ cd ../pulumi
 pulumi up
 ```
 
-## Testing
+## 🧪 Testing
 
-### Unit Tests
+### 🔬 Unit Tests
 ```bash
 cd order-app
 mvn test
@@ -121,7 +121,7 @@ mvn test
 
 
 
-### End-to-End Testing with Test Scripts
+### 🚦 End-to-End Testing with Test Scripts
 ```bash
 # Navigate to test scripts
 cd TestScripts
@@ -146,7 +146,7 @@ DYNAMODB_TABLE_NAME=orders yarn ts-node insert-test-orders.ts
 AWS_REGION=us-east-1 yarn ts-node insert-test-orders.ts
 ```
 
-### Test Script Features
+### ✨ Test Script Features
 
 The `insert-test-orders.ts` script generates realistic test data with:
 
@@ -190,27 +190,27 @@ The `insert-test-orders.ts` script generates realistic test data with:
    📦 Added item ITEM-B9X5L3: Portable Office Charger (Qty: 1)
 ```
 
-## Features
+## 🌟 Features
 
-### PDF Generation
-- **Professional Invoices**: HTML/CSS templates for high-quality PDFs
+### 📄 PDF Generation
+- **Invoices**: HTML/CSS templates for high-quality PDFs
 - **Dynamic Content**: Customer information, order details, line items
 - **Responsive Layout**: Proper formatting for various content sizes
 - **Template-Based**: Externalized HTML templates for easy customization
 
-### Throttling & Flow Control
+### 🎛️ Throttling & Flow Control
 - **EventBridge Pipes Throttling**: Controls flow rate at source
 - **Batch Processing**: Configurable batch sizes and windows
 - **Sequential Processing**: Prevents overwhelming Lambda functions
 - **Error Handling**: Built-in retry logic and dead letter queues
 
-### Monitoring & Observability
+### 📊 Monitoring & Observability
 - **CloudWatch Logs**: Comprehensive logging across all components
 - **Step Functions Execution History**: Visual workflow monitoring
 - **EventBridge Pipes Metrics**: Pipeline performance tracking
 - **Lambda Metrics**: Function performance and error rates
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 Order-PDF-Generator-Service/
@@ -244,16 +244,16 @@ Order-PDF-Generator-Service/
     └── src/test/java/com/orderpdf/it/
 ```
 
-## Environment Variables
+## 🌍 Environment Variables
 
-### Infrastructure Configuration
+### ⚙️ Infrastructure Configuration
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `AWS_REGION` | AWS region for services | `af-south-1` |
-| `BUCKET_NAME` | S3 bucket for PDFs | - |
+| `BUCKET_NAME` | S3 bucket for PDFs | set inside pulumi stage file as config variable |
 | `REPROCESS_POLICY` | Order reprocessing policy | `FIRST_TIME_ONLY` |
 
-### Test Script Configuration  
+### 🧪 Test Script Configuration  
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `AWS_REGION` | AWS region for services | `af-south-1` |
@@ -262,7 +262,7 @@ Order-PDF-Generator-Service/
 | `AWS_ACCESS_KEY_ID` | AWS access key (optional as long as aws cli is configure with keys ) | - |
 | `AWS_SECRET_ACCESS_KEY` | AWS secret key (optional as long as aws cli is configure with keys ) | - |
 
-## Monitoring the Pipeline
+## 📈 Monitoring the Pipeline
 
 Monitor each stage to verify the end-to-end workflow:
 
@@ -275,22 +275,11 @@ Monitor each stage to verify the end-to-end workflow:
 
 The entire workflow should complete within seconds for each order insertion, with throttling preventing system overload.
 
-## Troubleshooting
 
-### Common Issues
-
-1. **KMS Access Denied**: Lambda execution roles include KMS decrypt permissions
-2. **EventBridge Pipes Access**: Pipes role has DynamoDB stream and table permissions
-3. **Concurrency Limits**: No reserved concurrency, uses natural throttling via pipes
-4. **PDF Generation**: Uses HTML/CSS templates with OpenHTMLtoPDF for reliable rendering
-
-### Required AWS Permissions
+### 🔒 Required AWS Permissions
 
 Your deployment credentials need:
 - Full access to Lambda, Step Functions, DynamoDB, SQS, EventBridge, S3
 - IAM role creation and policy attachment
 - CloudWatch Logs access
 
-## License
-
-This project is a demonstration of serverless PDF generation using AWS services.
